@@ -23,7 +23,10 @@ public class Panel extends JFrame implements Runnable {
 
 	private int fila = 10;
 	private int columna = 5;
-	private int intentos = 0;
+	private byte numeroIntentos = 0;
+	private byte numeroMaximoIntentos = 0;
+	
+	
 	private Label lblIngrese;
 	private Label lblMensaje;
 	private Label lblMsgTiempo;
@@ -40,12 +43,14 @@ public class Panel extends JFrame implements Runnable {
 	private Record datafile;
 
 	public Panel() {}
-	public Panel(String tituloApp, Integer parametroX, Integer parametroY) {
+	public Panel(String tituloApp, Integer parametroX, Integer parametroY, Byte numeroMaximoIntentos) {
 		super(tituloApp);
 
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
 
+		this.numeroMaximoIntentos = numeroMaximoIntentos;
+		
 		this.datafile = new Record();
 		//this.record = this.datafile.leerArchivo();	//TODO: Lectura de record
 		this.record = "23/09/2009";
@@ -172,18 +177,18 @@ public class Panel extends JFrame implements Runnable {
 	}
 
 	private void pintarMensaje(String cadena, boolean flagIntento) {
-		this.intentos += 1;
+		this.numeroIntentos += 1;
 		try {
 			if (flagIntento) {
 				lblMensaje.setText("Ya se había encontrado la palabra: " + cadena);
 				lblMensaje.setBackground(Color.lightGray);
 				Thread.sleep(2500L);
 			}
-			lblMensaje.setText("Nro de intentos errados: " + this.intentos);
+			lblMensaje.setText("Nro de intentos errados: " + this.numeroIntentos);
 			lblMensaje.setBackground(Color.lightGray);
 			Thread.sleep(2500L);
 
-			if (this.intentos == 3) {
+			if (this.numeroIntentos == numeroMaximoIntentos) {
 				lblMensaje.setText(GAME_OVER);
 				lblMensaje.setBackground(Color.red);
 				Thread.sleep(2500L);
@@ -204,7 +209,7 @@ public class Panel extends JFrame implements Runnable {
 
 	private void limpiarTodo() {
 		limpiar();
-		intentos = 0;
+		numeroIntentos = 0;
 		limpiarCronometro();
 
 		for (int i = 0; i < this.fila; i++) {

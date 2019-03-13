@@ -6,7 +6,6 @@ import java.util.Hashtable;
 public class Palabras {
 
 	public static Hashtable<String, String> htPalabras = new Hashtable<String, String>();
-	public static final int intentos = 3;
 	public static Hashtable<String, String> htPistas = new Hashtable<String, String>();
 
 	private static final String CADENA_VACIA = "";

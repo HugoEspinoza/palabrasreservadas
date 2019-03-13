@@ -112,10 +112,7 @@
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
-
-							<mainClass>
-								com.carloncho.pruebas.main.PalabrasReservadasAppMain
-							</mainClass>
+							<mainClass>com.carloncho.pruebas.main.PalabrasReservadasAppMain</mainClass>
 							<finalName>palabrasreservadas</finalName>
 						</configuration>
 					</execution>
